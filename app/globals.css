@@ -1,0 +1,103 @@
+:root {
+  --abyss: #0a1d38;
+  --deep: #0e2c52;
+  --sea: #1a6a99;
+  --foam: #e9fbff;
+  --sand: #f2d9a0;
+  --coral: #ff6b5b;
+  --ink: #07142a;
+  --muted: #3b5573;
+  --edge: 0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink), -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background-color: var(--deep);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' shape-rendering='crispEdges'%3E%3Crect x='12' y='20' width='4' height='4' fill='%23fff' fill-opacity='.07'/%3E%3Crect x='60' y='8' width='4' height='4' fill='%23fff' fill-opacity='.07'/%3E%3Crect x='44' y='64' width='4' height='4' fill='%23fff' fill-opacity='.07'/%3E%3Crect x='80' y='76' width='4' height='4' fill='%23fff' fill-opacity='.07'/%3E%3C/svg%3E");
+  color: var(--foam);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+h1, h2, h3 { font-family: var(--font-display), monospace; font-weight: 400; line-height: 1.5; margin: 0 0 1rem; }
+h1 { font-size: clamp(1.3rem, 4.5vw, 2.2rem); margin: 1.5rem 0 1.5rem; }
+h2 { font-size: 1.05rem; }
+h3 { font-size: 0.95rem; }
+p { margin: 0 0 1rem; }
+a { color: #0b4f8a; text-underline-offset: 4px; }
+code { background: #cfeaf3; padding: 0 0.3rem; }
+a:focus-visible { outline: 4px solid var(--sand); outline-offset: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Nav */
+.nav { background: var(--abyss); border-bottom: 4px solid var(--sea); }
+.nav-inner { max-width: 60rem; margin: 0 auto; padding: 0.75rem 1.25rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; }
+.brand { display: flex; align-items: center; gap: 0.75rem; color: var(--foam); text-decoration: none; font-family: var(--font-display), monospace; font-size: 0.85rem; }
+.nav ul { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; list-style: none; margin: 0; padding: 0; }
+.nav ul a { display: block; padding: 0.4rem 0.7rem; color: var(--foam); text-decoration: none; }
+.nav ul a:hover { background: var(--sea); }
+.nav ul a[aria-current="page"] { background: var(--coral); color: var(--ink); }
+
+.wrap { max-width: 60rem; margin: 0 auto; padding: 1rem 1.5rem 4rem; }
+.lead { max-width: 38rem; margin-bottom: 1.75rem; }
+
+/* Pixel panels */
+.panel { background: var(--foam); color: var(--ink); padding: 1.5rem; margin: 8px 8px 2rem; box-shadow: var(--edge), 12px 12px 0 0 rgba(3, 10, 24, 0.45); }
+.panel h2, .panel h3 { color: var(--ink); }
+.hero { margin-top: 1.5rem; }
+.hero p { max-width: 34rem; }
+.grid { display: grid; gap: 0 1.75rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.stack { display: grid; }
+a.tile { display: block; text-decoration: none; color: var(--ink); }
+a.tile:hover, a.tile:focus-visible { background: var(--sand); }
+a.tile p { margin: 0; }
+
+/* Buttons */
+.btn { display: inline-block; margin: 4px; padding: 0.8rem 1.1rem; background: var(--coral); color: var(--ink); text-decoration: none; font-family: var(--font-display), monospace; font-size: 0.75rem; line-height: 1.4; box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.25), var(--edge); }
+.btn:hover { background: #ff8a7d; }
+.btn:active { transform: translateY(4px); }
+.btn[aria-disabled="true"] { background: #9fb3c8; cursor: not-allowed; }
+.btn.small { font-size: 0.65rem; padding: 0.6rem 0.8rem; background: var(--sand); }
+.btn.small:hover { background: #ffe8b4; }
+.files { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* Top 5 lists */
+.rank { list-style: none; counter-reset: r; margin: 0; padding: 0; }
+.rank li { counter-increment: r; display: flex; align-items: center; gap: 0.9rem; padding: 0.45rem 0; }
+.rank li::before { content: counter(r); flex: none; width: 2rem; height: 2rem; display: grid; place-items: center; background: var(--sea); color: var(--foam); font-family: var(--font-display), monospace; font-size: 0.8rem; }
+.rank li:first-child::before { background: #ffd24a; color: var(--ink); }
+
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+
+/* Resume viewer */
+.viewer iframe { width: 100%; height: 70vh; min-height: 24rem; border: 0; background: #fff; display: block; }
+.note { margin: 0.75rem 0 0; color: var(--muted); font-size: 1rem; }
+
+/* Photography placeholders */
+.photos { gap: 1.75rem; }
+.frame { aspect-ratio: 4 / 3; margin: 8px 8px 1.5rem; display: grid; place-items: center; background: linear-gradient(var(--sea) 0 50%, #155a86 50% 100%); box-shadow: var(--edge); }
+
+/* Home scene */
+.scene { position: relative; height: 22rem; margin: 8px 8px 2.5rem; overflow: hidden; background: linear-gradient(to bottom, #bfeaf7 0 8px, #1a6a99 8px 40%, #155a86 40% 72%, #104a72 72% 100%); box-shadow: var(--edge), 12px 12px 0 0 rgba(3, 10, 24, 0.45); }
+.scene .waves { position: absolute; inset: 0 0 auto 0; }
+.sand { position: absolute; inset: auto 0 0 0; height: 3rem; background: linear-gradient(#e0c383 0 4px, var(--sand) 4px); }
+.fish { position: absolute; animation: swim var(--dur, 24s) steps(80) infinite; animation-delay: var(--delay, 0s); }
+.crab { position: absolute; bottom: 1.4rem; left: 12%; animation: scuttle 14s steps(40) infinite alternate; }
+.star { position: absolute; bottom: 1.1rem; right: 14%; }
+@keyframes swim { from { left: -110px; } to { left: 100%; } }
+@keyframes scuttle { to { left: 70%; } }
+
+/* Pixel waves */
+.waves { height: 32px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 8' shape-rendering='crispEdges'%3E%3Crect x='12' y='0' width='8' height='1' fill='%23e9fbff'/%3E%3Crect x='8' y='1' width='16' height='1' fill='%238fe0f0'/%3E%3Crect x='0' y='2' width='32' height='6' fill='%231a6a99'/%3E%3C/svg%3E"); background-size: 128px 32px; background-repeat: repeat-x; image-rendering: pixelated; animation: drift 8s steps(8) infinite; }
+@keyframes drift { to { background-position-x: 128px; } }
+
+.foot { background: var(--sea); padding: 1rem 1.5rem 2rem; text-align: center; font-size: 1.1rem; }
+.foot p { margin: 0; }
+
+@media (max-width: 36rem) {
+  body { font-size: 1.15rem; }
+  .scene { height: 18rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fish, .crab, .waves { animation: none; }
+}

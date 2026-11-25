@@ -12,14 +12,13 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
-export default function Nav({ name }) {
+export default function Nav() {
   const path = usePathname();
   return (
     <header className="nav">
       <div className="nav-inner">
-        <Link href="/" className="brand">
-          <Sprite name="fish" scale={3} />
-          <span>{name}</span>
+        <Link href="/" className="brand" aria-label="Home">
+          <Sprite name="fish" scale={4} />
         </Link>
         <nav aria-label="Main">
           <ul>

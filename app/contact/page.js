@@ -7,7 +7,7 @@ export default function Contact() {
     <>
       <h1>Contact</h1>
       <section className="panel">
-        <p>Filler text: the best way to reach me is by email. I usually reply within a few days.</p>
+        <p>The best way to reach me is by email. I usually reply within a few days.</p>
         <a className="btn" href={`mailto:${site.email}`}>Email {site.email}</a>
       </section>
       <section className="panel">

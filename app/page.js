@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Scene from "../components/Scene";
-import { site } from "../data/site";
+
+// Edit this: a short intro about you.
+const intro =
+  "Filler intro: hi there! This is where a short intro about you goes: who you are, what you do, and what you love making. Two or three sentences is plenty, and you can swap this out whenever you're ready.";
 
 const sections = [
   { href: "/resume", title: "Resume", text: "Filler text: where I've worked and studied." },
@@ -13,9 +16,9 @@ const sections = [
 export default function Home() {
   return (
     <>
+      <h1 className="sr">Home</h1>
       <section className="panel hero">
-        <h1>{site.name}</h1>
-        <p>{site.tagline}</p>
+        <p className="intro">{intro}</p>
         <Link href="/contact" className="btn">Say hello</Link>
       </section>
 

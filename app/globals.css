@@ -26,7 +26,7 @@ body {
   line-height: 1.5;
 }
 h1, h2, h3 { font-family: var(--font-display), monospace; font-weight: 400; line-height: 1.5; margin: 0 0 1rem; }
-h1 { font-size: clamp(1.3rem, 4.5vw, 2.2rem); margin: 1.5rem 0 1.5rem; text-shadow: 4px 4px 0 var(--navy-deep); }
+h1 { font-size: clamp(1.3rem, 4.5vw, 2.2rem); margin: 1.5rem 0 1.5rem; }
 h2 { font-size: 1.05rem; }
 h3 { font-size: 0.95rem; }
 p { margin: 0 0 1rem; }
@@ -53,7 +53,7 @@ a:focus-visible { outline: 4px solid var(--brass); outline-offset: 4px; }
 .panel::before { content: ""; position: absolute; inset: 8px; border: 4px dotted rgba(59, 36, 16, 0.28); pointer-events: none; }
 .panel h2, .panel h3 { color: var(--ink); }
 .hero { margin-top: 1.5rem; }
-.hero p { max-width: 34rem; }
+.hero .intro { max-width: 40rem; font-size: 1.5rem; line-height: 1.45; margin-bottom: 1.25rem; }
 .grid { display: grid; gap: 0 1.75rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
 .stack { display: grid; }
 a.tile { display: block; text-decoration: none; color: var(--ink); }
@@ -85,36 +85,41 @@ a.tile p { margin: 0; }
 .photos { gap: 1.75rem; }
 .frame { aspect-ratio: 4 / 3; margin: 8px 8px 1.5rem; display: grid; place-items: center; background: linear-gradient(var(--sea) 0 50%, #1a527a 50% 100%); box-shadow: var(--edge), 8px 8px 0 0 rgba(5, 12, 24, 0.55); }
 
-/* ---------- Home scene ---------- */
-.scene {
-  position: relative; height: 26rem; margin: 8px 8px 2.5rem; overflow: hidden;
+/* ---------- Fish tank ---------- */
+.tank { position: relative; margin: 8px 8px 2.5rem; padding: 16px; background: #a4231b; box-shadow: var(--edge), 12px 12px 0 0 rgba(5, 12, 24, 0.55); }
+.tank::before { content: ""; position: absolute; inset: 6px; border: 4px solid var(--brass); pointer-events: none; }
+.tank-glass {
+  position: relative; height: 26rem; overflow: hidden; box-shadow: 0 0 0 4px var(--ink);
   background: linear-gradient(to bottom,
-    #7fb8d6 0 12%, #9ccbe0 12% 24%, #bfdcea 24% 34%, #f2e2b6 34% 42%,
-    #1f5f8b 42% 62%, #1a527a 62% 82%, #144468 82% 100%);
-  box-shadow: var(--edge), 12px 12px 0 0 rgba(5, 12, 24, 0.55);
+    #10233f 0 14px, #c9e8f1 14px 18px,
+    #2a7fa8 18px 25%, #1f6a93 25% 55%, #195a80 55% 80%, #144a6c 80% 100%);
 }
-.scene .waves { position: absolute; left: 0; right: 0; top: calc(42% - 8px); }
-.sun { position: absolute; top: 12%; left: 10%; }
-.cloud { position: absolute; animation: drift-cloud var(--dur, 100s) steps(120) infinite; animation-delay: var(--delay, 0s); }
-.ship { position: absolute; bottom: calc(58% - 12px); left: 28%; animation: sail 80s steps(160) infinite; animation-delay: -25s; }
-.bob { animation: bob 3s steps(1, end) infinite; }
-.lighthouse { position: absolute; bottom: calc(58% - 6px); right: 7%; }
-.beam { position: absolute; top: 8px; right: 50%; width: 9rem; height: 28px; background: rgba(255, 222, 120, 0.6); clip-path: polygon(100% 42%, 0 0, 0 100%, 100% 58%); animation: blink 4s steps(1, end) infinite; }
+.shine { position: absolute; top: 14%; left: 6%; width: 14px; height: 58%; background: rgba(255, 255, 255, 0.09); }
+.shine.thin { left: calc(6% + 26px); width: 5px; height: 40%; background: rgba(255, 255, 255, 0.14); }
+.gravel { position: absolute; inset: auto 0 0 0; height: 3.5rem; border-top: 4px solid #8a6428;
+  background-color: #c99a55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' shape-rendering='crispEdges'%3E%3Crect x='4' y='4' width='4' height='4' fill='%23e0c98f'/%3E%3Crect x='20' y='12' width='4' height='4' fill='%238a6428'/%3E%3Crect x='36' y='4' width='4' height='4' fill='%23fff6dc'/%3E%3Crect x='52' y='16' width='4' height='4' fill='%23c8372d'/%3E%3Crect x='8' y='24' width='4' height='4' fill='%238a6428'/%3E%3Crect x='28' y='24' width='4' height='4' fill='%23e0c98f'/%3E%3Crect x='44' y='28' width='4' height='4' fill='%23e0c98f'/%3E%3C/svg%3E"); }
+.airstone { position: absolute; bottom: 3.2rem; left: 38%; width: 28px; height: 10px; background: #4a5668; box-shadow: inset 0 -4px 0 #2b3445; }
+.bubble { position: absolute; background: rgba(255, 255, 255, 0.18); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.85); animation: rise var(--dur, 7s) steps(28) infinite, wobble 1s steps(1, end) infinite alternate; animation-delay: var(--delay, 0s); }
+.plant { position: absolute; bottom: 2.8rem; animation: sway 4s steps(1, end) infinite alternate; animation-delay: var(--delay, 0s); }
+.ornament { position: absolute; bottom: 2.6rem; }
+.ornament.castle { left: 14%; }
+.ornament.chest { left: 64%; }
+.ornament.starfish { left: 80%; bottom: 2.4rem; }
+.ornament.crab { right: 6%; animation: scuttle 16s steps(40) infinite alternate; }
 .fish { position: absolute; animation: swim var(--dur, 26s) steps(90) infinite; animation-delay: var(--delay, 0s); }
+.fish.show { animation-name: swim-show; }
 .fish.rev { transform: scaleX(-1); animation-name: swim-rev; }
-.sand { position: absolute; inset: auto 0 0 0; height: 3rem; background: linear-gradient(#b88a4a 0 4px, #d9b574 4px); }
-.x-mark { position: absolute; bottom: 1.2rem; left: 22%; }
-.trail { position: absolute; bottom: 1.5rem; left: calc(22% + 48px); width: 28%; border-top: 4px dotted #a02b23; }
-.chest { position: absolute; bottom: 1rem; left: 58%; }
-.crab { position: absolute; bottom: 1.2rem; right: 12%; animation: scuttle 16s steps(40) infinite alternate; }
+.bob { animation: bob 3s steps(1, end) infinite; }
 
 @keyframes swim { from { left: -110px; } to { left: 100%; } }
 @keyframes swim-rev { from { left: 100%; } to { left: -110px; } }
-@keyframes sail { from { left: -140px; } to { left: 100%; } }
-@keyframes drift-cloud { from { left: -120px; } to { left: 100%; } }
+@keyframes swim-show { from { left: -200px; } to { left: 100%; } }
+@keyframes rise { from { bottom: 3.6rem; } to { bottom: 96%; } }
+@keyframes wobble { from { transform: translateX(0); } to { transform: translateX(6px); } }
+@keyframes sway { from { transform: translateX(0); } to { transform: translateX(5px); } }
 @keyframes bob { 0% { transform: translateY(0); } 50% { transform: translateY(4px); } 100% { transform: translateY(0); } }
-@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
-@keyframes scuttle { to { right: 30%; } }
+@keyframes scuttle { to { right: 28%; } }
 
 /* Pixel waves */
 .waves { height: 32px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 8' shape-rendering='crispEdges'%3E%3Crect x='12' y='0' width='8' height='1' fill='%23fff6dc'/%3E%3Crect x='8' y='1' width='16' height='1' fill='%23a9d6e6'/%3E%3Crect x='0' y='2' width='32' height='6' fill='%231f5f8b'/%3E%3C/svg%3E"); background-size: 128px 32px; background-repeat: repeat-x; image-rendering: pixelated; animation: drift 8s steps(8) infinite; }
@@ -125,12 +130,11 @@ a.tile p { margin: 0; }
 
 @media (max-width: 36rem) {
   body { font-size: 1.15rem; }
-  .scene { height: 21rem; }
-  .ship svg { width: 84px; height: auto; }
-  .lighthouse svg { width: 48px; height: auto; }
-  .beam { width: 6rem; top: 6px; height: 20px; }
-  .sun svg { width: 40px; height: auto; }
+  .tank-glass { height: 21rem; }
+  .fish.show svg { width: 128px; height: auto; }
+  .ornament.castle svg { width: 64px; height: auto; }
+  .hero .intro { font-size: 1.3rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fish, .cloud, .ship, .bob, .beam, .crab, .waves { animation: none; }
+  .fish, .bob, .bubble, .plant, .ornament, .waves { animation: none; }
 }
